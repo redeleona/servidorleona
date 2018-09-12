@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="leona">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrar | LEONA</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/datepicker.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
+    <script src="assets/js/angular/angular.min.js"></script>
+    <script src="assets/js/angular/app.js"></script>
+    <script src="assets/js/angular/loginController.js"></script>
+    <script src="assets/js/angular/loginService.js"></script>
+</head>
+<body ng-controller="loginController">
+<div class="form">
+
+    <ul class="tab-group">
+        <li class="tab"><a href="leona.html">INÍCIO</a></li>
+        <li class="tab active"><a href="login.html">Login</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div ng-show="divlogin">
+            <h1>Faça Login!</h1>
+
+            <form>
+                <div class="field-wrap">
+                    <input type="text" ng-model="login.email" autocomplete="off" placeholder="Seu e-mail *"/>
+                </div>
+
+                <div class="field-wrap">
+                    <input type="password" ng-model="login.senha" placeholder="Sua senha *" autocomplete="off"/>
+                </div>
+                
+                    <a class="cad-forf" href="#" ng-click="btnCadastrar()">Cadastrar</a>
+                    <a class="cad-forf forgot" href="#" ng-click="recuperarSenha()">Esqueceu a Senha?</a>
+                
+                <p style="color: red" align="center"><b>{{respostaLogin}}</b></p>
+                <button ng-show="botaoLogin" type="submit" ng-click="logarUsuario()" class="button button-block"/>
+                ENTRAR</button>
+            </form>
+        </div>
+
+        <div ng-show="divcadastro">
+            <h1>Cadastre-se na Rede LEONA</h1>
+
+            <form>
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <input type="text" autocomplete="off" placeholder="Seu nome" ng-model="usuario.nome"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="text" autocomplete="off" placeholder="Seu sobrenome" ng-model="usuario.sobrenome"/>
+                    </div>
+                </div>
+                
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <input id="datepicker" type="text" autocomplete="off"  placeholder="Sua Data de Nascimento" ng-model="usuario.dataNascimento">
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="text" autocomplete="off" placeholder="Seu email" ng-model="usuario.email"/>
+                    </div>
+                </div>
+                
+                <div class="field-wrap">
+                    <input type="text" autocomplete="off" placeholder="Sua instituição" ng-model="usuario.instituicao"/>
+                </div>
+                
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <input type="text" autocomplete="off" placeholder="Sua cidade" ng-model="usuario.cidade"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="text" autocomplete="off" placeholder="Seu país" ng-model="usuario.pais"/>
+                    </div>
+                </div>
+
+                <div class="field-wrap">
+                    <input type="password" autocomplete="off" placeholder="Sua senha" ng-model="usuario.senha"/>
+                </div>
+                <p style="color: red" align="center"><b>{{respostaCadastro}}</b></p>
+                <button ng-show="botaoCadastro" type="submit" class="button button-block" ng-click="cadastrarUsuario()"/>
+                CADASTRAR</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <script>
+		;(function($){
+			$(document).ready(function(){
+				$('#datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    language: "pt-BR"
+				});
+
+				$('.datepicker').datepicker();
+			});	
+		})(jQuery);
+    </script>
+</body>
+</html>

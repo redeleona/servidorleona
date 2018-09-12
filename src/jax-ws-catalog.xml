@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://150.163.55.230:8084/estacao-leona-novo/ComunicacaoSJC?wsdl" uri="wsdl/150.163.55.230_8084/estacao-leona-novo/ComunicacaoSJC.wsdl"/>
+    <system systemId="http://150.163.55.230:8084/estacao-leona-novo/ComunicacaoSJC?xsd=1" uri="wsdl/150.163.55.230_8084/estacao-leona-novo/ComunicacaoSJC.xsd_1.xsd"/>
+</catalog>

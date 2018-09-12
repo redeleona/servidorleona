@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="leona">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Painel | LEONA</title>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/datepicker3.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-table.css" rel="stylesheet">
+        <link href="assets/css/styles.css" rel="stylesheet">
+        <script src="assets/js/lumino.glyphs.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <style>
+            #map {
+              height: 500px;
+              width: 100%;
+            }
+          </style>
+        <!--<base href="/leona-novo/" />-->
+    </head>
+    <body ng-controller="leonaController">
+        <nav ng-init="mostrarUsuarioLogado()" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Projeto LEONA - <span>INPE</span></a>
+                    <ul class="user-menu">
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <use xlink:href="#stroked-male-user"></use>
+                                </svg> {{usuarioLogado.nome + ' ' + usuarioLogado.sobrenome}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">
+                                        <svg class="glyph stroked male-user">
+                                        <use xlink:href="#stroked-male-user"></use>
+                                        </svg>
+                                        Meus Dados</a></li>
+                                <li><a href="#">
+                                        <svg class="glyph stroked cancel">
+                                        <use xlink:href="#stroked-cancel"></use>
+                                        </svg>
+                                        Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <form role="search">
+                <div class="form-group">
+                </div>
+            </form>
+            <ul class="nav menu">
+                <li ng-class="{active: activetab == '/'}"><a href="#!/'">
+                        <svg class="glyph stroked app window with content">
+                        <use xlink:href="#stroked-dashboard-dial"></use>
+                        </svg>
+                        Painel</a></li>
+                <li ng-show="itemUsuario" ng-class="{active: activetab == '/usuario'}"><a href="#!/usuario">
+                        <svg class="glyph stroked male-user">
+                        <use xlink:href="#stroked-male-user"></use>
+                        </svg>
+                        Usuários</a></li>
+                <li ng-class="{active: activetab == '/estacao'}"><a href="#!/estacao">
+                        <svg class="glyph stroked location pin">
+                        <use xlink:href="#stroked-location-pin"></use>
+                        </svg>
+                        Estações</a></li>
+                <li ng-class="{active: activetab == '/observacao'}"><a href="#!/observacao">
+                        <svg class="glyph stroked camcorder">
+                        <use xlink:href="#stroked-camcorder"></use>
+                        </svg>
+                        Observações</a></li>
+                <li ng-class="{active: activetab == '/imagem'}"><a href="#!/imagem">
+                        <svg class="glyph stroked camera">
+                        <use xlink:href="#stroked-camera"></use>
+                        </svg>
+                        Imagens <small style="color: #b3b3b3"> (Em desenvolvimento)</small></a></li>
+                <li ng-class="{active: activetab == '/meusdados'}"><a href="#!/meusdados">
+                        <svg class="glyph stroked camera">
+                        <use xlink:href="#stroked-male-user"></use>
+                        </svg>
+                        Meus Dados</a></li>
+                <li role="presentation" class="divider"></li>
+                <li><a href="login.html">
+                        <svg class="glyph stroked cancel">
+                        <use xlink:href="#stroked-cancel"></use>
+                        </svg>
+                        Sair</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div ng-view></div>    
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyCyNMbu_ROLyXAQIzqn6iUUybPT-34iXk8&libraries=placeses,visualization,drawing,geometry,places"></script>
+        <script src="assets/js/angular/ng-map.js"></script>    
+        <script src="assets/js/angular/leona.js"></script>    
+        <script src="views/usuario/usuarioController.js"></script>    
+        <script src="views/usuario/usuarioService.js"></script>    
+        <script src="views/dashboard/dashboardController.js"></script>   
+        <script src="views/estacao/estacaoController.js"></script>   
+        <script src="views/estacao/estacaoService.js"></script> 
+        <script src="views/observacao/observacaoService.js"></script>   
+        <script src="views/observacao/observacaoController.js"></script>
+        <script src="views/observacao/pantiltControlService.js"></script>   
+        <script src="views/observacao/streamingService.js"></script>   
+        <script src="views/observacao/chatService.js"></script>   
+        <script src="views/imagem/imagemController.js"></script>   
+        <script src="views/meusdados/meusdadosController.js"></script> 
+        <script src="views/meusdados/meusdadosService.js"></script>         
+    </body>
+</html>

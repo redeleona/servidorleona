@@ -1,0 +1,122 @@
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li class="active"><a href="#">
+                <svg class="glyph stroked home">
+                <use xlink:href="#stroked-home"></use>
+                </svg>
+            </a></li>
+    </ol>
+</div>
+<!--/.row-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Painel Principal LEONA</h1>
+    </div>
+</div>
+<!--/.row-->
+
+<div class="row">
+    <a href="#!/estacao"><div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="panel panel-blue panel-widget ">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <svg class="glyph stroked location pin">
+                    <use xlink:href="#stroked-location-pin"></use>
+                    </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">{{estacoes.length}}</div>
+                    <div class="text-muted">Estações LEONA</div>                    
+                </div>
+            </div>
+        </div>
+    </div></a>
+    <a href="#!/imagem"><div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="panel panel-orange panel-widget">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <svg class="glyph stroked camera">
+                    <use xlink:href="#stroked-camera"></use>
+                    </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">00.000</div>
+                    <div class="text-muted">Imagens Capturadas</div>
+                </div>
+            </div>
+        </div>
+    </div></a>
+    <a href="#!/observacao"><div class="col-xs-12 col-md-6 col-lg-4" ng-init="retornarObservacoesDashboard()">
+        <div class="panel panel-red panel-widget">
+            <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                    <svg class="glyph stroked camcorder">
+                    <use xlink:href="#stroked-camcorder"></use>
+                    </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                    <div class="large">{{andamento.length}}</div>
+                    <div class="text-muted">Observações Ao Vivo</div>
+                </div>
+            </div>
+        </div>
+    </div></a>
+</div>
+<!--/.row-->
+
+<div class="row" ng-show="avisoCadastro">
+    <div class="alert bg-danger" role="alert">
+        <svg class="glyph stroked cancel">
+        <use xlink:href="#stroked-cancel"></use>
+        </svg>
+        Seu cadastro não está 100% ativo! Registre completamente os dados clicando <a href="#!/meusdados">AQUI</a> 
+    </div>
+</div>
+
+<!--<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Estações LEONA</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default" ng-init="buscarEstacoesDashboard()">
+                            <script src="https://maps.google.com/maps/api/js?key=AIzaSyCyNMbu_ROLyXAQIzqn6iUUybPT-34iXk8&libraries=placeses,visualization,drawing,geometry,places"></script>
+                            <ng-map style="height: 500px" center="-15.74996257, -47.83447266" zoom="4">
+                                <div ng-repeat="estacao in estacoes" >
+                                    <marker position="{{estacao.latitude}},{{estacao.longitude}}" title="{{estacao.cidade}}"></marker>    
+                                    <shape name="circle" ng-repeat="estacao in estacoes" no-watcher="true"
+                                        stroke-color="#FF0000"
+                                        stroke-opacity="0.8"
+                                        stroke-weight="2"
+                                        fill-color="#FF0000"
+                                        fill-opacity="0.1"
+                                        center="{{[estacao.latitude,estacao.longitude]}}"
+                                        radius="800000">
+                                      </shape>
+                                </div>
+
+                            </ng-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6" ng-init="buscarNomeFoto()">
+        <br/>
+        
+        <img src="ftp://fsabbas:DSAthEn4cru@server-ftpdsa.cptec.inpe.br{{imagemurl}}" width="90%"><br/>
+        <a href="ftp://fsabbas:DSAthEn4cru@server-ftpdsa.cptec.inpe.br{{imagemurl}}">Mostrar Imagem</a>
+    </div>
+</div>-->
+
+<div class="row " style="height: 700px;">
+    <iframe style="height: 700px; width: 100%" src="http://nucleo.tempestades.org.br/NovoPortal/acesso_restrito/mapa_satelite_raios/"></iframe>
+</div>
+    
+
+
+

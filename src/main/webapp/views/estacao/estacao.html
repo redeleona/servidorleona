@@ -1,0 +1,120 @@
+<div ng-init="buscarEstacoes()"></div>
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#!/'"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+        <li class="active">Estações</li>
+    </ol>
+</div>
+
+<h1 align='center'>Estações ({{estacoes.length}})</h1>
+<hr/>
+
+
+<div ng-show="divDetalhesEstacao" class="panel panel-default container">
+    <div align="right"><i ng-click="fecharDivDetalhesEstacao()" class="glyphicon glyphicon-remove"></i></div>
+    <h3 align="center">Detalhes da Estação</h3>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="col-md-4">
+        <h4><b>Cidade: </b>{{estacaoDetalhe.cidade}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>Estado: </b>{{estacaoDetalhe.estado}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>País: </b>{{estacaoDetalhe.pais}}</h4>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="col-md-4">
+        <h4><b>Contato: </b>{{estacaoDetalhe.nomeContato}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>E-mail: </b>{{estacaoDetalhe.emailContato}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>Telefone: </b>{{estacaoDetalhe.telefoneContato}}</h4>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="row" align="center"><button ng-click="divEditarEstacao(estacaoDetalhe)" ng-show="botaoEditarEstacao" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> EDITAR</button> <button class="btn btn-danger" ng-click="excluirEstacao()" ng-show="botaoExcluirEstacao"><i class="glyphicon glyphicon-remove"></i> EXCLUIR</button></div>
+    <br/>
+</div>
+<div ng-show="divCadastroEstacao" class="panel panel-default container"> 
+    <div align="right"><i ng-click="fecharDivNovaEstacao()" class="glyphicon glyphicon-remove"></i></div>
+    <h3 align="center">Nova Estação</h3>
+    <hr/>
+    <div class="col-md-4"><h4>Cidade: <input class="form-control" ng-model="estacao.cidade" ng-blur="buscarDadosGoogle()"></h4></div>
+    <div class="col-md-4"><h4>Estado: <input class="form-control" ng-model="estacao.estado"></h4></div>
+    <div class="col-md-4"><h4>País: <input class="form-control" ng-model="estacao.pais"></h4></div>
+    <div class="col-md-4"><h4>Nome Contato: <input class="form-control" ng-model="estacao.nomeContato"></h4></div>
+    <div class="col-md-4"><h4>E-mail Contato: <input class="form-control" ng-model="estacao.emailContato"></h4></div>
+    <div class="col-md-4"><h4>Telefone Contato: <input class="form-control" ng-model="estacao.telefoneContato"></h4></div>
+    <div class="row"><p style="color: red" align="center"><b>{{respostaCadastroEstacao}}</b></p></div>
+    <div class="row" align="center"><button ng-click="fecharDivNovaEstacao()" class="btn btn-danger">CANCELAR</button> <button class="btn btn-info" type="submit" ng-click="cadastrarEstacao()">SALVAR</button></div>
+    <br/>
+</div>
+<div ng-show="divEdicaoEstacao" class="panel panel-default container"> 
+    <div align="right"><i ng-click="fecharDivEditarEstacao()" class="glyphicon glyphicon-remove"></i></div>
+    <h3 align="center">Editar Estação</h3>
+    <hr/>
+    <div class="col-md-4"><h4>Cidade: <input class="form-control" ng-model="estacao.cidade" disabled></h4></div>
+    <div class="col-md-4"><h4>Estado: <input class="form-control" ng-model="estacao.estado" disabled></h4></div>
+    <div class="col-md-4"><h4>País: <input class="form-control" ng-model="estacao.pais" disabled></h4></div>
+    <div class="col-md-4"><h4>Nome Contato: <input class="form-control" ng-model="estacao.nomeContato"></h4></div>
+    <div class="col-md-4"><h4>E-mail Contato: <input class="form-control" ng-model="estacao.emailContato"></h4></div>
+    <div class="col-md-4"><h4>Telefone Contato: <input class="form-control" ng-model="estacao.telefoneContato"></h4></div>
+    <div class="row"><p style="color: red" align="center"><b>{{respostaCadastroEstacao}}</b></p></div>
+    <div class="row" align="center"><button ng-click="fecharDivEditarEstacao()" class="btn btn-danger">CANCELAR</button> <button class="btn btn-info" type="submit" ng-click="editarEstacao()">SALVAR</button></div>
+    <br/>
+</div>
+<div class="clearfix"></div>
+<br/>
+<div class="panel panel-default col-md-12">
+    <div class="col-md-6">
+        <h2>Localização</h2>
+        
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyCyNMbu_ROLyXAQIzqn6iUUybPT-34iXk8&libraries=placeses,visualization,drawing,geometry,places"></script>
+        <ng-map style="height: 500px" center="-15.74996257, -47.83447266" zoom="4">
+            <div ng-repeat="estacao in estacoes" >
+                <marker position="{{estacao.latitude}},{{estacao.longitude}}" title="{{estacao.cidade}}"></marker>    
+                <shape name="circle" ng-repeat="estacao in estacoes" no-watcher="true"
+                                        stroke-color="#FF0000"
+                                        stroke-opacity="0.8"
+                                        stroke-weight="2"
+                                        fill-color="#FF0000"
+                                        fill-opacity="0.1"
+                                        center="{{[estacao.latitude,estacao.longitude]}}"
+                                        radius="800000">
+                                      </shape>
+            </div>
+            
+        </ng-map>
+
+        <br/>
+    </div>
+    <div class="col-md-6">
+        <h2>Detalhes</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Estação</th>
+                    <th class="text-center">Contato</th>
+                    <th class="text-center">Estado</th>      
+                    <th class="text-center">Detalhes</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="estacao in estacoes">
+                    <td class="text-center">{{estacao.cidade}}</td>
+                    <td class="text-center">{{estacao.nomeContato}}</td>
+                    <td class="text-center">{{estacao.estado}}</td>
+                    <td class="text-center"><a href="" ng-click="verDetalhesEstacao(estacao)"><b>Detalhes</b></a></td>
+                </tr>    
+            </tbody>
+        </table>
+        <br/>
+        <hr/>
+        <div align="right"><button ng-show="botaoNovaEstacao" ng-click="abrirDivNovaEstacao()" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> NOVA ESTAÇÃO</button></div>
+    </div>
+</div>

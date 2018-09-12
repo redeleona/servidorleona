@@ -1,0 +1,175 @@
+<div id="loading" align="center" style="display: block">  
+    <img src="https://1.bp.blogspot.com/-tM8Z7VPNn5Q/WMkr9sb6qyI/AAAAAAAAA9s/IjGPg8VFOkc41UWeaWuGY7eyJeCCEb82gCLcB/s1600/earth%2B.gif"/>
+        <h3>        Loading...</h3>
+</div>
+
+<div id="content" style="display: none">  
+    <div class="container">
+        <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#!/'"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                    <li>Observação</li>
+                    <li class="active">{{estacao.estacao}}</li>
+                </ol>
+        </div>   
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="container">
+                    <div id="tagCamera1"></div>
+                    <div class="row">
+                        <div class="col-lg-4">
+    <!--                        <div class="well center-block">
+                                <button class="btn btn-info" ng-click="iniciarGravacao(1)" type="button">Iniciar gravacao</button> 
+                                <button class="btn btn-info" ng-click="pararGravacao(1)" type="button">Parar gravacao</button>                            
+                            </div>-->
+                            <h3> STATUS: {{camera1.record}} </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="container"> 
+                    <div id="tagCamera2"></div> 
+                    <div class="row">
+                        <div class="col-lg-4">
+    <!--                        <div class="well center-block">
+                                <button class="btn btn-info" ng-click="iniciarGravacao(2)" type="button">Iniciar gravacao</button> 
+                                <button class="btn btn-info" ng-click="pararGravacao(2)" type="button">Parar gravacao</button>       
+                            </div>-->
+                            <h3> STATUS: {{camera2.record}} </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">            
+                    <div class="container">
+                        <h3> Estação {{estacao.estacao}}</h3>
+                        <h3>        Menu de Controle</h3>
+                        <p style="color: red" align="left"><b>{{respostaAcoes}}</b></p>
+                        <div class="row" ng-show="divBarra">
+                            <span>{{progress_bar()}}</span>
+                            <strong>{{progress}}%</strong>
+                        </div>
+                        <div class="col-md-6" ng-show="acoes">
+                            <div class="col-lg-16">
+                                <button class="btn btn-info" ng-click="ligarCamera()" type="button">Iniciar Câmeras</button> 
+                                <button class="btn btn-info" ng-click="desligarCamera()" type="button">Finalizar Câmeras</button>
+                                <button class="btn btn-info" ng-click="resetarCamera()" type="button">Zerar Pantilt</button>
+                                <br/><br/>
+                            </div>
+
+                            <p style="color: red"><b>{{respostaAcao}}</b></p>
+
+                            <br/>
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <label class="btn btn-secondary">Azimute: </label>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Digite os graus.." ng-model="camera1.azimute">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" ng-click="moverAzimute()" type="button">Mover Azimute</button>
+                                    </span>
+                                </div>   
+                                <br/>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <label class="btn btn-secondary">Elevação: </label>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Digite os graus.." ng-model="camera1.elevacao">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" ng-click="moverElevacao()" type="button">Mover Elevação</button>
+                                    </span>
+                                </div>  
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="panel panel-default" ng-init="buscarChatSalvo()">
+                    <div class="panel-heading">
+                        <div class="col-md-9">Chat</div>
+                        <div class="col-md-3" align="right" ng-hide="corpoChat"><i class="glyphicon glyphicon-plus" ng-click="abrirCorpoChat()"></i></div>
+                        <div class="col-md-3" align="right" ng-show="corpoChat"><i class="glyphicon glyphicon-minus" ng-click="fecharCorpoChat()"></i></div>
+                    </div>
+                    <div class="panel-body" ng-show="corpoChat">
+                        <form>
+                            <div class="col-md-8">Mensagem: <input class="form-control" ng-model="msg" placeholder="Digite sua Mensagem"></div>
+                            <div class="col-md-2"><br/><button class="btn btn-info" ng-click="enviarMensagemChat()" type="submit">ENVIAR</button></div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <hr/>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Mensagem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="chat in listaChat">
+                                        <td>{{chat.usuario}}</td>                                    
+                                        <td>{{chat.msg}}</td>  
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>           
+                <hr/>
+                <div class="panel panel-default" ng-init="buscarLogsSalvos()">
+                    <div class="panel-heading">
+                        <div class="col-md-9">Log de Ações</div>
+                        <div class="col-md-3" align="right" ng-hide="corpoLogAcoes"><i class="glyphicon glyphicon-plus" ng-click="abrirLogAcoes()"></i></div>
+                        <div class="col-md-3" align="right" ng-show="corpoLogAcoes"><i class="glyphicon glyphicon-minus" ng-click="fecharLogAcoes()"></i></div>
+                    </div>
+                    <div class="panel panel-default col-md-12" ng-show="obsLogs">
+                    <h3 align="center">{{titulo}}</h3>
+                    <h4 ng-show="show" align="center">Não há logs registrados</h4>
+                    <table  ng-hide="show" class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Usuário</th>
+                                <th class="text-center">Ação</th>
+                                <th class="text-center">Graus</th>
+                                <th class="text-center">Data/Hora</th>      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="l in logs">
+                                <td class="text-center">{{l.usuario}}</td>        
+                                <td class="text-center">{{l.movimento}}</td>        
+                                <td class="text-center">{{l.graus}}</td>        
+                                <td class="text-center">{{l.datahora}}</td>        
+                            </tr>    
+                        </tbody>
+                    </table>
+                </div>
+
+                    <div class="panel-body"  ng-show="corpoLogAcoes">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuário</th>
+                                        <th>Ação</th>
+                                        <th>Graus</th>
+                                        <th>Data/Hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="acao in listaAcoes">
+                                        <td>{{acao.usuario}}</td>                                    
+                                        <td>{{acao.movimento}}</td>
+                                        <td>{{acao.graus}}</td>                        
+                                        <td>{{acao.datahora}}</td>      
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div ng-init="buscarUsuarios()"></div>
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#!/'"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+        <li class="active">Usuário</li>
+    </ol>
+</div>
+<h1 align='center'>Gestão de Usuários ({{usuarios.length}})</h1>
+<hr/>
+<div ng-show="detalhesUsuario" class="panel panel-default container">
+    <div align="right"><i ng-click="fecharDetalhes()" class="glyphicon glyphicon-remove"></i></div>
+    <div class="col-md-12" align="center">
+        <h3><b>Nome: </b>{{usuarioDetalhe.nome +' '+ usuarioDetalhe.sobrenome}}</h3>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="col-md-4">
+        <h4><b>E-mail: </b>{{usuarioDetalhe.email}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>Tipo: </b>{{usuarioDetalhe.tipo}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>Status: </b>{{usuarioDetalhe.status}}</h4>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="col-md-4">
+        <h4><b>Instituição:: </b>{{usuarioDetalhe.instituicao}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>Cidade: </b>{{usuarioDetalhe.cidade}}</h4>
+    </div>
+    <div class="col-md-4">
+        <h4><b>País: </b>{{usuarioDetalhe.pais}}</h4>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="col-md-12" align="center">
+        <h3><button class="btn" ng-click="fecharDetalhes()">FECHAR</button></h3>
+    </div>
+</div>
+<div ng-show="editarDadosUsuario" class="panel panel-default container">    
+    <h3>Editar senha de {{usuarioDetalhe.nome}}</h3>
+    <div class="col-md-3">
+        <h4><b>Senha: </b><input class="form-control" ng-model="senhaUsuario"></h4>
+    </div>
+    <div class="col-md-2">
+        <h4><br/><button class="btn btn-info form-control" ng-click="editarSenha()">EDITAR</button></h4>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">E-mail</th>
+            <th class="text-center">Instituição</th>
+            <th class="text-center">Status</th>      
+            <th class="text-center">Detalhes</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Senha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="usuario in usuarios">
+            <td class="text-center">{{usuario.nome}}</td>
+            <td class="text-center">{{usuario.email}}</td>
+            <td class="text-center">{{usuario.instituicao}}</td>
+            <td class="text-center">{{usuario.status}}</td>
+            <td class="text-center"><a href="" ng-click="verDetalhesUsuario(usuario)"><b>Ver Detalhes</b></a></td>
+            <td class="text-center"><a href="" ng-click="mudarStatusUsuario(usuario)"><b>Ativar/Desativar</b></a></td>
+            <td class="text-center"><a href="" ng-click="editarSenhaUsuario(usuario)"><b>Editar Senha</b></a></td>
+        </tr>    
+    </tbody>
+</table>
+
+<br/>

@@ -1,0 +1,277 @@
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#!/'"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+        <li class="active">Observação</li>
+    </ol>
+</div>
+<h1 align='center'>Gestão de Observação</h1>
+
+<hr/>
+<div ng-show="botaoNovaObservacao" align="center"><button ng-click="abrirDivNovaObservacao()" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i>NOVA OBSERVAÇÂO</button></div>
+    <div ng-show="divCadastroObservacao" ng-init="retornarEstacoes()" class="container panel panel-default">        
+    <h3 align="center">Escolha o tipo de Observação</h3>    
+    
+    <div class="well center-block">
+        <button align="center" class="btn btn-info" ng-click="observacaoTipoNormal()" type="button">NORMAL</button> 
+        <button align="center" class="btn btn-info" ng-click="observacaoTipoCampanha()" type="button">CAMPANHA</button>
+        <button align="center" class="btn btn-info" ng-click="fecharDivNovaObservacao()" type="button">CANCELAR</button> 
+    </div>
+
+    <div ng-show="divObservacaoTipoNormal" ng-init="retornarEstacoes()" class="container panel panel-default">
+            <h3 align="center">Cadastrar Observação</h3>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h4>Estação*: 
+                    <select class="form-control" ng-model="observacaoCadastro.estacao">
+                        <option ng-repeat="estacao in estacoes" value="{{estacao.cidade}}" ng-if="estacao.cidade !== 'Modo Campanha'">{{estacao.cidade}} / {{estacao.estado}} - {{estacao.pais}} </option>
+                    </select>
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <h4>Data Inicial*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.diaInicio"><option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.mesInicio"><option ng-repeat="mes in meses" value="{{mes.valor}}">{{mes.nome}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.anoInicio"><option ng-repeat="ano in anos" value="{{ano}}">{{ano}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Hora Inicial*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.horaInicio"><option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option></select>:
+                        <select class="form-control" ng-model="observacaoCadastro.minInicio"><option ng-repeat="min in minutos" value="{{min}}">{{min}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <h4>Data Final*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.diaFim"><option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.mesFim"><option ng-repeat="mes in meses" value="{{mes.valor}}">{{mes.nome}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.anoFim"><option ng-repeat="ano in anos" value="{{ano}}">{{ano}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Hora Final*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.horaFim"><option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option></select>:
+                        <select class="form-control" ng-model="observacaoCadastro.minFim"><option ng-repeat="min in minutos" value="{{min}}">{{min}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row"><p style="color: red" align="center"><b>{{respostaCadastroObservacao}}</b></p></div>
+            <div class="row" align="center"><button ng-click="fecharDivNovaObservacaoNormal()" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> CANCELAR</button> <button ng-click="salvarObservacao()" ng-show="botaoSalvarObservacao" class="btn btn-info" type="submit"><i class="glyphicon glyphicon-ok"></i> SALVAR</button></div>
+            <br/>
+        </div>
+        
+        <div ng-show="divObservacaoTipoCampanha" ng-init="retornarEstacoes()" class="container panel panel-default">
+            <h2 align="center">Atenção!Este recurso está em desenvolvimento e pode não estar disponível.</h2>
+            <h3 align="center">Cadastrar Campanha</h3>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h4>Estação*: 
+                    <select class="form-control" ng-model="observacaoCadastro.estacao">
+                       <option ng-repeat="estacao in estacoes" value="{{estacao.cidade}}" ng-if="estacao.cidade === 'Modo Campanha'">{{estacao.cidade}} / {{estacao.estado}} - {{estacao.pais}} </option>
+                    </select>
+                </h4>
+           </div>
+            <div class="clearfix"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <h4>Data Inicial*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.diaInicio"><option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.mesInicio"><option ng-repeat="mes in meses" value="{{mes.valor}}">{{mes.nome}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.anoInicio"><option ng-repeat="ano in anos" value="{{ano}}">{{ano}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Hora Inicial*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.horaInicio"><option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option></select>:
+                        <select class="form-control" ng-model="observacaoCadastro.minInicio"><option ng-repeat="min in minutos" value="{{min}}">{{min}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <h4>Data Final*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.diaFim"><option ng-repeat="dia in dias" value="{{dia}}">{{dia}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.mesFim"><option ng-repeat="mes in meses" value="{{mes.valor}}">{{mes.nome}}</option></select>/
+                        <select class="form-control" ng-model="observacaoCadastro.anoFim"><option ng-repeat="ano in anos" value="{{ano}}">{{ano}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Hora Final*: 
+                    <div class="form-inline">
+                        <select class="form-control" ng-model="observacaoCadastro.horaFim"><option ng-repeat="hora in horas" value="{{hora}}">{{hora}}</option></select>:
+                        <select class="form-control" ng-model="observacaoCadastro.minFim"><option ng-repeat="min in minutos" value="{{min}}">{{min}}</option></select>
+                    </div>
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row"><p style="color: red" align="center"><b>{{respostaCadastroObservacao}}</b></p></div>
+            <div class="row" align="center"><button ng-click="fecharDivNovaObservacaoCampanha()" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> CANCELAR</button> <button ng-click="salvarObservacao()" ng-show="botaoSalvarObservacao" class="btn btn-info" type="submit"><i class="glyphicon glyphicon-ok"></i> SALVAR</button></div>
+            <br/>
+        </div>
+    </div>
+<br/><br/>
+
+
+<div class="row" ng-init="retornarObservacoesRealizadas()">
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <a href="#" ng-click="divRealizadas()"><div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked camera">
+                        <use xlink:href="#stroked-camera"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="text-muted">Observações</div>
+                        <div class="text-justify"><h4>Realizadas ({{realizadas.length}})</h4></div>
+                    </div>
+                </div>
+            </div></a>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <a href="#" ng-click="divFuturas()"><div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked video">
+                        <use xlink:href="#stroked-video"/>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="text-muted">Observações</div>
+                        <div class="text-justify"><h4>Futuras ({{futuras.length}})</h4></div>
+                    </div>
+                </div>
+            </div></a>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <a href="#" ng-click="divAndamento()"><div class="panel panel-red panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked camcorder">
+                        <use xlink:href="#stroked-camcorder"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="text-muted">Observações</div>
+                        <div class="text-justify"><h4>Em Andamento ({{andamento.length}})</h4></div>
+                    </div>
+                </div>
+            </div></a>
+    </div>    
+</div>
+<div class="panel panel-default col-md-12" ng-show="obsRealizadas">
+    <h3 align="center">Observações Realizadas</h3>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center">Estação</th>
+                <th class="text-center">Data de inicio</th>
+                <th class="text-center">Hora de inicio</th>
+                <th class="text-center">Data de encerramento</th>      
+                <th class="text-center">Hora de encerramento</th>
+                <th class="text-center">Resultados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="r in realizadas">
+                <td class="text-center">{{r.estacao}}</td>        
+                <td class="text-center">{{r.diaInicio}}/{{r.mesInicio}}/{{r.anoInicio}}</td>        
+                <td class="text-center">{{r.horaInicio}}:{{r.minInicio}}</td>        
+                <td class="text-center">{{r.diaFim}}/{{r.mesFim}}/{{r.anoFim}}</td>        
+                <td class="text-center">{{r.horaFim}}:{{r.minFim}}</td>        
+                <td class="text-center"><a href="" ng-click="buscaLog(r.id,r.estacao)"><b>Resultados</b></a></td>
+            </tr>    
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default col-md-12" ng-show="obsAndamento">
+    <h3 align="center">Observações em Andamento</h3>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center">Estação</th>
+                <th class="text-center">Data de inicio</th>
+                <th class="text-center">Hora de inicio</th>
+                <th class="text-center">Data de encerramento</th>      
+                <th class="text-center">Hora de encerramento</th>
+                <th class="text-center">STATUS</th>
+                <th class="text-center">Observar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in andamento">
+                <td class="text-center">{{a.estacao}}</td>        
+                <td class="text-center">{{a.diaInicio}}/{{a.mesInicio}}/{{a.anoInicio}}</td>        
+                <td class="text-center">{{a.horaInicio}}:{{a.minInicio}}</td>        
+                <td class="text-center">{{a.diaFim}}/{{a.mesFim}}/{{a.anoFim}}</td>        
+                <td class="text-center">{{a.horaFim}}:{{a.minFim}}</td>
+                <td class="text-center" ng-if="a.status.statusEstacao === 'ONLINE'">ONLINE</td>
+                <td class="text-center" ng-if="a.status.statusEstacao !== 'ONLINE'">CONECTANDO </td>  
+                <td class="text-center" ng-if="a.status.statusEstacao === 'ONLINE'"><a href="#!/observacao/{{a.estacao}}" ng-click="iniciarObservacao(a)"><b>Iniciar Observação</b></a></td> 
+                <td class="text-center" ng-if="a.status.statusEstacao !== 'ONLINE'">Observação Indisponível</td>
+            </tr>    
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default col-md-12" ng-show="obsFuturas">
+    <h3 align="center">Observações Futuras</h3>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center">Estação</th>
+                <th class="text-center">Hora de inicio</th>
+                <th class="text-center">Hora de inicio</th>
+                <th class="text-center">Data de encerramento</th>      
+                <th class="text-center">Hora de encerramento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="f in futuras">
+                <td class="text-center">{{f.estacao}}</td>        
+                <td class="text-center">{{f.diaInicio}}/{{f.mesInicio}}/{{f.anoInicio}}</td>        
+                <td class="text-center">{{f.horaInicio}}:{{f.minInicio}}</td>        
+                <td class="text-center">{{f.diaFim}}/{{f.mesFim}}/{{f.anoFim}}</td>        
+                <td class="text-center">{{f.horaFim}}:{{f.minFim}}</td>        
+            </tr>    
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default col-md-12" ng-show="obsLogs">
+    <h3 align="center">{{titulo}}</h3>
+    <h4 ng-show="show" align="center">Não há¡ logs registrados</h4>
+    <table  ng-hide="show" class="table table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center">Usuário</th>
+                <th class="text-center">Ação</th>
+                <th class="text-center">Graus</th>
+                <th class="text-center">Data/Hora</th>      
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="l in logs">
+                <td class="text-center">{{l.usuario}}</td>        
+                <td class="text-center">{{l.movimento}}</td>        
+                <td class="text-center">{{l.graus}}</td>        
+                <td class="text-center">{{l.datahora}}</td>        
+            </tr>    
+        </tbody>
+    </table>
+</div>
